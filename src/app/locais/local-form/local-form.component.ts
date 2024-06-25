@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { LocaisService } from '../services/locais.service';
 import { Location } from '@angular/common';
 
@@ -10,10 +10,10 @@ import { Location } from '@angular/common';
 })
 export class LocalFormComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
-    private fromeBuilder: FormBuilder,
+    private fromeBuilder: UntypedFormBuilder,
     private service: LocaisService,
     private location: Location
   ) {
