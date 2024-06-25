@@ -6,6 +6,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 
 import { Local } from '../model/local';
 import { LocaisService } from '../services/locais.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-locais',
@@ -15,11 +16,13 @@ import { LocaisService } from '../services/locais.service';
 export class LocaisComponent implements OnInit {
 
   locais$: Observable<Local[]>;
-  displayedColumns = ['local_Name', 'local_Cap', 'local_End', 'local_disp'];
+  displayedColumns = ['local_Name', 'local_Cap', 'local_End', 'local_disp', 'actions'];
 
   constructor(
     private locaisService: LocaisService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
     this.locais$ = this.locaisService.list()
@@ -40,6 +43,10 @@ export class LocaisComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }

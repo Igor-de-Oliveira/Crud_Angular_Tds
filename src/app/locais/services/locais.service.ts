@@ -19,4 +19,8 @@ export class LocaisService {
       //delay(5000)
     );
   }
+
+  save(record: Local) {
+    return this.httpClient.post<Local>(this.API, record);
+  }
 }
