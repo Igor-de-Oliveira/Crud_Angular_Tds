@@ -1,0 +1,56 @@
+<mat-table [dataSource]="locais">
+
+  <!-- local_Name Column -->
+  <ng-container matColumnDef="local_Name">
+    <mat-header-cell  *matHeaderCellDef> Nome </mat-header-cell>
+    <mat-cell *matCellDef="let local"> {{local.local_Name}} </mat-cell>
+  </ng-container>
+
+  <!-- local_Cap Column -->
+  <ng-container matColumnDef="local_Cap">
+    <mat-header-cell  *matHeaderCellDef> Capacidade </mat-header-cell>
+    <mat-cell *matCellDef="let local"> {{local.local_Cap}} </mat-cell>
+  </ng-container>
+
+  <!-- Local_End Column -->
+  <ng-container matColumnDef="local_End">
+    <mat-header-cell  *matHeaderCellDef> Endereco </mat-header-cell>
+    <mat-cell *matCellDef="let local"> {{local.local_End}} </mat-cell>
+  </ng-container>
+
+  <!-- local_disp Column -->
+  <ng-container matColumnDef="local_disp">
+    <mat-header-cell  *matHeaderCellDef> Disposicao </mat-header-cell>
+    <mat-cell *matCellDef="let local"> {{local.local_disp}} </mat-cell>
+  </ng-container>
+
+  <!-- Alugar Column -->
+  <ng-container matColumnDef="Alugar">
+    <mat-header-cell  *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let local">
+      <button mat-mini-fab color="primary" aria-label="Editar">
+        <mat-icon (click)="onEvent(local)">apps</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell  *matHeaderCellDef>
+      <button mat-mini-fab color="accent" aria-label="Adicionar">
+        <mat-icon (click)="onAdd()">add</mat-icon>
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let local">
+      <button mat-mini-fab color="primary" aria-label="Editar">
+        <mat-icon (click)="onEdit(local)">edit</mat-icon>
+      </button><br>
+      <button mat-mini-fab color="warn" aria-label="Excluir">
+        <mat-icon (click)="onDelete(local)">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

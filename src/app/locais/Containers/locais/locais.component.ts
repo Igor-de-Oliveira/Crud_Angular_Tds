@@ -1,12 +1,14 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Local } from './../../model/local';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
-import { Local } from '../model/local';
-import { LocaisService } from '../services/locais.service';
+import { LocaisService } from '../../services/locais.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-locais',
@@ -15,9 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LocaisComponent implements OnInit {
 
-  locais$: Observable<Local[]>;
-  displayedColumns = ['local_Name', 'local_Cap', 'local_End', 'local_disp', 'actions'];
-
+  locais$: Observable<Local[]> | null = null;
   constructor(
     private locaisService: LocaisService,
     public dialog: MatDialog,
@@ -25,6 +25,11 @@ export class LocaisComponent implements OnInit {
     private route: ActivatedRoute
   ) {
 
+    this.refresh();
+
+  }
+
+  refresh() {
     this.locais$ = this.locaisService.list()
     .pipe(
         catchError(error => {
@@ -32,7 +37,6 @@ export class LocaisComponent implements OnInit {
           return of([])
         })
     );
-
   }
 
   onError(errorMsg: string) {
@@ -47,6 +51,27 @@ export class LocaisComponent implements OnInit {
 
   onAdd() {
     this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  onEdit(local: Local) {
+    this.router.navigate(['edit', local.id_Local], {relativeTo: this.route});
+  }
+
+  onDelete(local: Local) {
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Tem certeza que quer remover o curso?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result){
+        this.locaisService.remove(local.id_Local).subscribe(
+          () => {
+            this.refresh();
+          }
+        )
+      }
+    });
   }
 
 }

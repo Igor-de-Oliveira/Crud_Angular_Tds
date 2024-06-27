@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-toolbar color="primary">
+    Localidades disponíveis
+  </mat-toolbar>
+
+<div class="column-flex mat-elevation-z8">
+
+  <app-locais-list
+    *ngIf="locais$ | async as locais; else loading"
+    [locais]="locais"
+    (add)="onAdd()"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+  ></app-locais-list>
+
+    <ng-template #loading>
+      <div class="load-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
+</mat-card>

@@ -20,7 +20,26 @@ export class LocaisService {
     );
   }
 
-  save(record: Local) {
+  loadById(id: number){
+    return this.httpClient.get<Local>(`${this.API}/${id}`);
+  }
+
+  save(record: Partial<Local>) {
+    if (record.id_Local){
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Local>) {
     return this.httpClient.post<Local>(this.API, record);
+  }
+
+  private update(record: Partial<Local>){
+    return this.httpClient.put<Local>(`${this.API}/${record.id_Local}`, record);
+  }
+
+  remove(id: number){
+    return this.httpClient.delete(`${this.API}/${id}`);
   }
 }
