@@ -1,4 +1,4 @@
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { Local } from './../../model/local';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';

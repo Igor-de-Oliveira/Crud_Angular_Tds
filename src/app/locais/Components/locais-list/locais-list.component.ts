@@ -16,7 +16,7 @@ export class LocaisListComponent implements OnInit {
   @Output() delete = new EventEmitter(false);
 
 
-  readonly displayedColumns = ['local_Name', 'local_Cap', 'local_End', 'local_disp', 'Alugar', 'actions'];
+  readonly displayedColumns = ['local_Name', 'local_Cap', 'local_End', 'local_disp', 'actions'];
 
 
   constructor() { }
@@ -34,10 +34,6 @@ export class LocaisListComponent implements OnInit {
 
   onDelete(local: Local){
     this.delete.emit(local);
-  }
-
-  onEvent(local: Local){
-
   }
 
 }

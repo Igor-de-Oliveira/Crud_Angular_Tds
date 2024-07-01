@@ -24,29 +24,19 @@
     <mat-cell *matCellDef="let local"> {{local.local_disp}} </mat-cell>
   </ng-container>
 
-  <!-- Alugar Column -->
-  <ng-container matColumnDef="Alugar">
-    <mat-header-cell  *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let local">
-      <button mat-mini-fab color="primary" aria-label="Editar">
-        <mat-icon (click)="onEvent(local)">apps</mat-icon>
-      </button>
-    </mat-cell>
-  </ng-container>
-
   <!-- Actions Column -->
   <ng-container matColumnDef="actions">
     <mat-header-cell  *matHeaderCellDef>
-      <button mat-mini-fab color="accent" aria-label="Adicionar">
-        <mat-icon (click)="onAdd()">add</mat-icon>
+      <button mat-mini-fab color="accent" aria-label="Adicionar" (click)="onAdd()">
+        <mat-icon>add</mat-icon>
       </button>
     </mat-header-cell>
     <mat-cell *matCellDef="let local">
-      <button mat-mini-fab color="primary" aria-label="Editar">
-        <mat-icon (click)="onEdit(local)">edit</mat-icon>
+      <button mat-mini-fab color="primary" aria-label="Editar" (click)="onEdit(local)">
+        <mat-icon>edit</mat-icon>
       </button><br>
-      <button mat-mini-fab color="warn" aria-label="Excluir">
-        <mat-icon (click)="onDelete(local)">delete</mat-icon>
+      <button mat-mini-fab color="warn" aria-label="Excluir" (click)="onDelete(local)">
+        <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>
   </ng-container>

@@ -1,3 +1,5 @@
+import { Evento } from "./evento";
+
 export interface Local {
 
   id_Local: number;
@@ -5,5 +7,7 @@ export interface Local {
   local_disp: string;
   local_Cap: number;
   local_Name: string;
+
+  eventos?: Evento[];
 
 }

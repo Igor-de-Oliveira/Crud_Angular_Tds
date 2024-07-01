@@ -19,6 +19,6 @@ export class LocalResolver implements Resolve<Local> {
     if (route.params && route.params['id']){
       return this.service.loadById(route.params['id']);
     }
-    return of({id_Local: 0, local_End: '', local_disp: '', local_Cap: 0, local_Name: ''});
+    return of({id_Local: 0, local_End: '', local_disp: '', local_Cap: 0, local_Name: '', eventos: []});
   }
 }
