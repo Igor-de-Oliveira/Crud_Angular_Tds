@@ -75,6 +75,7 @@ export class LocalFormComponent implements OnInit {
   addNew(): void {
     const eventos = this.form.get('eventos') as FormArray;
     eventos.push(this.createEvento());
+
   }
 
   removeEvento(index: number): void {
